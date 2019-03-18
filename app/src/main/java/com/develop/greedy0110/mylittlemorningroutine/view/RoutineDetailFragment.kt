@@ -3,6 +3,7 @@ package com.develop.greedy0110.mylittlemorningroutine.view
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -38,6 +39,11 @@ class RoutineDetailFragment : Fragment() {
         description.text = routine.desc
         start_date.text = routine.startDate.toString() // TODO Date 를 커스텀 포맷으로 보여줘야 한다.
         achieve.text = "성취도 : ${routine.achieve.toInt()} %"
-        // TODO routine.toDoList 를 이용해서 todo_list (recycler view) 를 구성해 준다.
+
+        // routine.toDoList 를 이용해서 todo_list (recycler view) 를 구성해 준다.
+        val adapter = ToDoAdapter()
+        adapter.data = routine.toDoList
+        todo_list.layoutManager = LinearLayoutManager(activity)
+        todo_list.adapter = adapter
     }
 }

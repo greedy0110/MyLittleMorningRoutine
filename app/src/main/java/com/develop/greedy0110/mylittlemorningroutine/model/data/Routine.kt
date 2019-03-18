@@ -8,18 +8,17 @@ data class Routine(
     var title : String = "title",
     var desc : String = "desc",
     var isWeekDay : Boolean = true, // TODO 통일된 (주간 주말 구분없는) 루틴일 수도 있다.
-    var startDate : Date = Dates.today
-) {
-    var toDoList : MutableList<ToDo> = mutableListOf()
+    var startDate : Date = Dates.today,
+    val key: String = KeyGenerator.getRandomKey(), // 생성시 랜덤 키를 생성해서 할당 변하지 않음
+    var toDoList : MutableList<ToDo> = mutableListOf(),
     var records : MutableList<RoutineRecord> = mutableListOf()
-    val key = KeyGenerator.getRandomKey() // 생성시 랜덤 키를 생성해서 할당 변하지 않음
-
+) {
     data class RoutineRecord(
-        val routine : Routine,
-        val date : Date
-    ) {
+        val toDoList : MutableList<ToDo> = mutableListOf(),
         // to do check list 는 to do list 에서 to do 를 수행했는지 여부를 기록한다.
-        val toDoCheckList = MutableList<Boolean>(routine.toDoList.size, {false})
+        val toDoCheckList: MutableList<Boolean> = MutableList<Boolean>(toDoList.size, {false}),
+        val date : Date = Dates.today
+    ) {
         val achieve // 한 일 갯수 / 모닝 루틴 전체 갯수 * 100
             get() = toDoCheckList.count { it } / toDoCheckList.size.toFloat() * 100
     }
@@ -34,6 +33,6 @@ data class Routine(
             }
         }
 
-    fun makeRecord(date: Date = Dates.today) = RoutineRecord(this, date)
+    fun makeRecord(date: Date = Dates.today) = RoutineRecord(toDoList = toDoList, date = date)
 }
 
