@@ -1,12 +1,12 @@
 package com.develop.greedy0110.mylittlemorningroutine.view
 
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.support.design.widget.TabLayout
-import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentManager
-import android.support.v4.app.FragmentStatePagerAdapter
-import android.support.v4.view.PagerAdapter
+import com.google.android.material.tabs.TabLayout
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentStatePagerAdapter
+import androidx.viewpager.widget.PagerAdapter
 import com.develop.greedy0110.mylittlemorningroutine.R
 import com.develop.greedy0110.mylittlemorningroutine.model.data.Routine
 import com.develop.greedy0110.mylittlemorningroutine.model.repository.RoutineRepository
@@ -20,8 +20,9 @@ class RoutineActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_routine)
 
-        val key = "demo"
-//        val key = intent.getStringExtra("key")
+        // demo routine 데이터
+        //val key = "demo"
+        val key = intent.getStringExtra("key")
         val routine = RoutineRepository.routines.get(key)
 
         if (routine == null) {
@@ -47,7 +48,7 @@ class RoutineActivity : AppCompatActivity() {
     }
 }
 
-class RoutinePagerAdapter(fm: FragmentManager, private val tabCount: Int, private val routine: Routine) : FragmentStatePagerAdapter(fm) {
+class RoutinePagerAdapter(fm: FragmentManager, private val tabCount: Int, routine: Routine) : FragmentStatePagerAdapter(fm) {
     private val routineDF = RoutineDetailFragment()
     private val routineRF = RoutineRecordFragment()
 

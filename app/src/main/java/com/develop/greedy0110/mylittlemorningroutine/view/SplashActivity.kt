@@ -1,7 +1,7 @@
 package com.develop.greedy0110.mylittlemorningroutine.view
 
 import android.content.Intent
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import com.develop.greedy0110.mylittlemorningroutine.R
@@ -14,7 +14,7 @@ class SplashActivity : AppCompatActivity() {
 
         // 1초후에 앱 메인으로
         Handler().postDelayed({
-            val intent = Intent(applicationContext, RoutineActivity::class.java)
+            val intent = Intent(applicationContext, RoutineSimpleListActivity::class.java)
             startActivity(intent)
             finish()
         }, 1000)

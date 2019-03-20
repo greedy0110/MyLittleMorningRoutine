@@ -2,14 +2,15 @@ package com.develop.greedy0110.mylittlemorningroutine.view
 
 
 import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.support.v7.widget.LinearLayoutManager
+import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 
 import com.develop.greedy0110.mylittlemorningroutine.R
 import com.develop.greedy0110.mylittlemorningroutine.model.data.Routine
+import khronos.toString
 import kotlinx.android.synthetic.main.fragment_routine_detail.*
 
 // 데이터를 단순히 보여주기만 할 화면
@@ -37,7 +38,7 @@ class RoutineDetailFragment : Fragment() {
         weekday_weekend.text = if (routine.isWeekDay) "주간 루틴" else "주말 루틴"
         title.text = routine.title
         description.text = routine.desc
-        start_date.text = routine.startDate.toString() // TODO Date 를 커스텀 포맷으로 보여줘야 한다.
+        start_date.text = routine.startDate.toString("yyyy.MM.dd ~")
         achieve.text = "성취도 : ${routine.achieve.toInt()} %"
 
         // routine.toDoList 를 이용해서 todo_list (recycler view) 를 구성해 준다.

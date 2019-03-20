@@ -1,12 +1,14 @@
 package com.develop.greedy0110.mylittlemorningroutine.view
 
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import com.develop.greedy0110.mylittlemorningroutine.R
 import com.develop.greedy0110.mylittlemorningroutine.model.data.Routine
+import khronos.minutes
+import khronos.toString
 
 class RoutineRecordAdapter: RecyclerView.Adapter<RoutineRecordAdapter.ViewHolder>() {
     var data = mutableListOf<Routine.RoutineRecord>()
@@ -26,7 +28,7 @@ class RoutineRecordAdapter: RecyclerView.Adapter<RoutineRecordAdapter.ViewHolder
     // 해당 pos에 그려질 때 호출!
     override fun onBindViewHolder(holder: ViewHolder, pos: Int) {
         if (data.size <= pos) return
-        holder.date.text = data[pos].date.toString()
+        holder.date.text = data[pos].date.toString("yyyy.MM.dd ~")
         holder.achieve.text = "달성도 : ${data[pos].achieve} %"
     }
 }
