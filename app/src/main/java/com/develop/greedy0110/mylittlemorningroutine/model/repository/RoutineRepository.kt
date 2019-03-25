@@ -49,4 +49,8 @@ object RoutineRepository {
     fun addRoutine(routine: Routine) {
         routines[routine.key] = routine
     }
+
+    fun deleteRoutine(key: String) {
+        routines.remove(key)
+    }
 }

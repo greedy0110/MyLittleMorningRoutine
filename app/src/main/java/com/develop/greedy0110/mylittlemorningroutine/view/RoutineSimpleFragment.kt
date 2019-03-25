@@ -10,6 +10,8 @@ import android.view.ViewGroup
 
 import com.develop.greedy0110.mylittlemorningroutine.R
 import com.develop.greedy0110.mylittlemorningroutine.model.data.Routine
+import com.develop.greedy0110.mylittlemorningroutine.model.repository.RoutineRepository
+import com.develop.greedy0110.mylittlemorningroutine.view.dialog.AddRoutineRecordDialog
 import khronos.toString
 import kotlinx.android.synthetic.main.fragment_routine_simple.*
 
@@ -40,6 +42,22 @@ class RoutineSimpleFragment : Fragment() {
             val intent = Intent(activity, RoutineActivity::class.java)
             intent.putExtra("key", routine.key)
             startActivity(intent)
+        }
+
+        routine_simple_delete.setOnClickListener {
+            // TODO 루틴 삭제할지 물어본다. Dialog 정리후 제작하자.
+            // 삭제한다고 하면 삭제후 RoutineSimpleListActivity를 다시 그려야한다. (해당 루틴을 삭제하면 이 프래그먼트는 필요가 없어진다.)
+            RoutineRepository.deleteRoutine(routine.key)
+            val intent = Intent(activity, RoutineSimpleListActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT) // 이 플래그를 줘야 새로운 activity를 만드는 것이 아니라 이미 메모리에 적재된 activity를 그대로 가져온다.
+            startActivity(intent)
+        }
+
+        routine_simple_record.setOnClickListener {
+            // 루틴 추가 팝업을 킨다.
+            val addRoutineRecord = AddRoutineRecordDialog()
+            addRoutineRecord.routine = routine
+            addRoutineRecord.show(activity!!.supportFragmentManager, "addroutinerecord")
         }
     }
 
