@@ -3,11 +3,10 @@ package com.develop.greedy0110.mylittlemorningroutine.view.dialog
 import android.app.AlertDialog
 import android.app.Dialog
 import android.os.Bundle
-import android.widget.TextView
 import androidx.fragment.app.DialogFragment
 import com.develop.greedy0110.mylittlemorningroutine.R
 import com.develop.greedy0110.mylittlemorningroutine.model.data.ToDo
-import com.develop.greedy0110.mylittlemorningroutine.view.AddNewToDoAdapter
+import com.develop.greedy0110.mylittlemorningroutine.view.adapter.AddNewToDoAdapter
 import com.google.android.material.textfield.TextInputEditText
 import java.lang.IllegalStateException
 
@@ -18,9 +17,9 @@ class AddToDoDialog: DialogFragment() {
         val dialogView = activity?.layoutInflater?.inflate(R.layout.add_todo_dialog, null)
 
         return AlertDialog.Builder(activity).run {
-            setTitle("할 일 추가")
+            setTitle(R.string.add_todo_title)
             setView(dialogView)
-            setPositiveButton("OK") {
+            setPositiveButton(R.string.ok_text) {
                 dialog, which ->
                 adapter?.apply {
                     val title = dialogView?.findViewById<TextInputEditText>(R.id.add_todo_title_edit)?.text.toString()
@@ -31,7 +30,7 @@ class AddToDoDialog: DialogFragment() {
                     addData(ToDo(title = title, desc = desc))
                 }
             }
-            setNegativeButton("Cancel") {
+            setNegativeButton(R.string.cancel_text) {
                 dialog, which ->
             }
             create()

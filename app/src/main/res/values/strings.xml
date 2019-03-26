@@ -3,4 +3,8 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="cancel_text">취소</string>
+    <string name="ok_text">확인</string>
+    <string name="add_todo_title">할일 추가</string>
+    <string name="add_routine_title">루틴 추가</string>
 </resources>

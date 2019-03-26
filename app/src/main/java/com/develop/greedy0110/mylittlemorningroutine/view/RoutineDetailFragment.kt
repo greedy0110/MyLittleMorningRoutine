@@ -10,6 +10,7 @@ import android.view.ViewGroup
 
 import com.develop.greedy0110.mylittlemorningroutine.R
 import com.develop.greedy0110.mylittlemorningroutine.model.data.Routine
+import com.develop.greedy0110.mylittlemorningroutine.view.adapter.ToDoAdapter
 import khronos.toString
 import kotlinx.android.synthetic.main.fragment_routine_detail.*
 

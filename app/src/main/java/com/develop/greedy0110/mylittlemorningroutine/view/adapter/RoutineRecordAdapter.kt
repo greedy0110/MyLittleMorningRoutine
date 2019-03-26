@@ -1,4 +1,4 @@
-package com.develop.greedy0110.mylittlemorningroutine.view
+package com.develop.greedy0110.mylittlemorningroutine.view.adapter
 
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import android.widget.TextView
 import com.develop.greedy0110.mylittlemorningroutine.R
 import com.develop.greedy0110.mylittlemorningroutine.model.data.Routine
-import khronos.minutes
 import khronos.toString
 
 class RoutineRecordAdapter: RecyclerView.Adapter<RoutineRecordAdapter.ViewHolder>() {

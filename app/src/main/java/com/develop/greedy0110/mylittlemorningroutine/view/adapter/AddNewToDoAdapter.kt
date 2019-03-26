@@ -1,4 +1,4 @@
-package com.develop.greedy0110.mylittlemorningroutine.view
+package com.develop.greedy0110.mylittlemorningroutine.view.adapter
 
 import android.view.LayoutInflater
 import android.view.View

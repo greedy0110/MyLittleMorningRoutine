@@ -9,6 +9,8 @@ import android.view.View
 import android.view.ViewGroup
 
 import com.develop.greedy0110.mylittlemorningroutine.R
+import com.develop.greedy0110.mylittlemorningroutine.utils.showDialog
+import com.develop.greedy0110.mylittlemorningroutine.view.dialog.AddRoutineDialog
 import kotlinx.android.synthetic.main.fragment_routine_add_button.*
 
 class RoutineAddButtonFragment : Fragment() {
@@ -25,8 +27,11 @@ class RoutineAddButtonFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
 
         to_routine_add.setOnClickListener {
-            val intent = Intent(activity, RoutineAddActivity::class.java)
-            startActivity(intent)
+//            val intent = Intent(activity, RoutineAddActivity::class.java)
+//            startActivity(intent)
+
+            val addRoutineDialog = AddRoutineDialog()
+            showDialog(addRoutineDialog)
         }
     }
 }
