@@ -6,6 +6,7 @@ import android.os.Bundle
 import androidx.fragment.app.DialogFragment
 import com.develop.greedy0110.mylittlemorningroutine.model.data.Routine
 import com.develop.greedy0110.mylittlemorningroutine.model.repository.RoutineRepository
+import java.lang.IllegalStateException
 
 class AddRoutineRecordDialog : DialogFragment() {
     var routine = Routine()
@@ -37,6 +38,6 @@ class AddRoutineRecordDialog : DialogFragment() {
                 dialog, which ->
             }
             create()
-        }
+        } ?: throw IllegalStateException()
     }
 }

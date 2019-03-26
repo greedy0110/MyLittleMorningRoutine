@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
               xmlns:app="http://schemas.android.com/apk/res-auto"
-              android:orientation="vertical"
+                                                   xmlns:tools="http://schemas.android.com/tools" android:orientation="vertical"
               android:layout_width="300dp"
               android:layout_height="wrap_content"
               android:id="@+id/lay">
 
     <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="80dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
             android:hint="할일 이름"
-            android:id="@+id/add_todo_title">
+            android:id="@+id/add_todo_title" app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="16dp" android:layout_marginStart="16dp" android:layout_marginEnd="16dp">
 
         <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
@@ -20,11 +22,14 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="150dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
             android:hint="할일 설명"
             app:helperText="할일에 대한 상세정보를 적어주세요"
-            android:id="@+id/add_todo_desc">
+            android:id="@+id/add_todo_desc" android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@+id/add_todo_title" app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" android:layout_marginStart="16dp" android:layout_marginEnd="16dp"
+            app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="16dp">
 
         <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
@@ -33,23 +38,4 @@
                 android:id="@+id/add_todo_desc_edit"/>
     </com.google.android.material.textfield.TextInputLayout>
 
-    <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-        <Button
-                android:text="Cancel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/add_todo_cancel"
-                android:layout_weight="1"/>
-
-        <Button
-                android:text="OK"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/add_todo_ok"
-                android:layout_weight="1"/>
-    </LinearLayout>
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

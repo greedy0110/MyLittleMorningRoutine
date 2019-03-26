@@ -9,6 +9,8 @@ import com.develop.greedy0110.mylittlemorningroutine.model.data.Routine
 import com.develop.greedy0110.mylittlemorningroutine.model.data.ToDo
 import com.develop.greedy0110.mylittlemorningroutine.model.repository.RoutineRepository
 import com.develop.greedy0110.mylittlemorningroutine.utils.hideKeyboard
+import com.develop.greedy0110.mylittlemorningroutine.utils.showDialog
+import com.develop.greedy0110.mylittlemorningroutine.view.dialog.AddToDoDialog
 import khronos.Dates
 import kotlinx.android.synthetic.main.activity_routine_add.*
 import org.jetbrains.anko.toast
@@ -27,27 +29,9 @@ class RoutineAddActivity : AppCompatActivity() {
             // TODO를 추가하는 Dialog 를 띄워줌
             // Dialog 의 OK 버튼을 누르면 TODO를 TODOLIST에 추가함
             // Dialog 의 Cancel 버튼을 누르면 Dialog 를 닫음
-            val dialog = AddToDoDialog(this)
-            dialog.ok.setOnClickListener {
-                val title = dialog.title.text.toString()
-                val desc = dialog.desc.text.toString()
-
-                if (title.isBlank()) {
-                    return@setOnClickListener
-                }
-
-                val newTodo = ToDo(title = title, desc = desc)
-                adapter.addData(newTodo)
-
-                hideKeyboard()
-                dialog.dismiss()
-            }
-            dialog.cancel.setOnClickListener {
-                hideKeyboard()
-                dialog.dismiss()
-            }
-
-            dialog.show()
+            val dialog = AddToDoDialog()
+            dialog.adapter = adapter
+            showDialog(dialog)
         }
 
         new_routine_ok.setOnClickListener {
