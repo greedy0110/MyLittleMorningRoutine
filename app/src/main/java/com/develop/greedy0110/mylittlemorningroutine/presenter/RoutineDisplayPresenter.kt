@@ -1,20 +1,9 @@
 package com.develop.greedy0110.mylittlemorningroutine.presenter
 
 import com.develop.greedy0110.mylittlemorningroutine.model.repository.RoutineModel
-import com.develop.greedy0110.mylittlemorningroutine.view.RoutineView
+import com.develop.greedy0110.mylittlemorningroutine.view.contract.RoutineView
 
-class RoutineDisplayPresenter(private val model: RoutineModel, private val key: String = "demo") {
-
-    private var view: RoutineView? = null
-
-    fun bind(view : RoutineView) {
-        this.view = view
-    }
-
-    fun unbind() {
-        view = null
-    }
-
+class RoutineDisplayPresenter(private val model: RoutineModel, private val key: String = "demo"): Presenter<RoutineView>() {
     fun onActivityCreated() {
         view?.updateLayout(model.getRoutine(key))
     }

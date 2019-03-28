@@ -26,10 +26,8 @@ class RoutineAddButtonFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
+        // 단순 네비게이션 역할하는 코드이다. MVP 모델을 과하게 적용할 필요가 없어보인다.
         to_routine_add.setOnClickListener {
-//            val intent = Intent(activity, RoutineAddActivity::class.java)
-//            startActivity(intent)
-
             val addRoutineDialog = AddRoutineDialog()
             showDialog(addRoutineDialog)
         }

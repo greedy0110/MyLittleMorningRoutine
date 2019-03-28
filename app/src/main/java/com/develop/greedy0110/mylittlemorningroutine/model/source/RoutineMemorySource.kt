@@ -1,10 +1,10 @@
-package com.develop.greedy0110.mylittlemorningroutine.model.repository
+package com.develop.greedy0110.mylittlemorningroutine.model.source
 
 import com.develop.greedy0110.mylittlemorningroutine.model.data.Routine
 import com.develop.greedy0110.mylittlemorningroutine.model.data.ToDo
 
 // 모든 루틴 정보를 가지고 있어야 한다
-object RoutineRepository {
+object RoutineMemorySource {
     val routines = mutableMapOf<String,Routine>()
 
     init {

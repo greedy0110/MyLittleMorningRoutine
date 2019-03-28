@@ -6,18 +6,30 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentStatePagerAdapter
 import com.develop.greedy0110.mylittlemorningroutine.R
-import com.develop.greedy0110.mylittlemorningroutine.model.repository.RoutineRepository
-import com.develop.greedy0110.mylittlemorningroutine.model.repository.RoutineRepository.routines
+import com.develop.greedy0110.mylittlemorningroutine.model.data.Routine
+import com.develop.greedy0110.mylittlemorningroutine.model.repository.RoutineMemoryModel
+import com.develop.greedy0110.mylittlemorningroutine.presenter.RoutineListPresenter
+import com.develop.greedy0110.mylittlemorningroutine.view.contract.RoutineListView
 import kotlinx.android.synthetic.main.activity_routine_simple_list.*
 
-class RoutineSimpleListActivity : AppCompatActivity() {
+class RoutineSimpleListActivity : AppCompatActivity(),
+    RoutineListView {
 
     private var lastPos = -1
     private lateinit var adapter: RoutineSimplePagerAdapter
+    private lateinit var presenter: RoutineListPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_routine_simple_list)
+
+        presenter = RoutineListPresenter(RoutineMemoryModel())
+        presenter.bind(this)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        presenter.onResume()
     }
 
     override fun onPause() {
@@ -29,10 +41,14 @@ class RoutineSimpleListActivity : AppCompatActivity() {
         // 아니라면 해당 position 을 기억
     }
 
-    override fun onResume() {
-        super.onResume()
+    override fun onDestroy() {
+        super.onDestroy()
+        presenter.unbind()
+    }
+
+    override fun updateList(routines: List<Routine>) {
         // 이 엑티비티가 화면에 다시 보여질때마다 Resume 을 호출해서 항상 최근 fragment 상태를 유지하자.
-        val fragmentList = makeRoutineSimpleFragmentList()
+        val fragmentList = makeRoutineSimpleFragmentList(routines)
         adapter = RoutineSimplePagerAdapter(supportFragmentManager, fragmentList)
         simple_list_view_pager.adapter = adapter
         // 첫번째 아이템은 fragmentList 마지막에 있는 녀석으로 만든다.
@@ -42,11 +58,11 @@ class RoutineSimpleListActivity : AppCompatActivity() {
             simple_list_view_pager.currentItem = lastPos
     }
 
-    private fun makeRoutineSimpleFragmentList(): MutableList<RoutineSimpleFragment> {
+    private fun makeRoutineSimpleFragmentList(routines: List<Routine>): MutableList<RoutineSimpleFragment> {
         // 모든 routine 에 해당하는 fragment를 만들자.
         // TODO routine 의 정렬 순서는 어떻게 되어야하나?
         val fragmentList = mutableListOf<RoutineSimpleFragment>()
-        for (routine in RoutineRepository.routines.values) {
+        for (routine in routines) {
             val fragment = RoutineSimpleFragment()
             fragment.key = routine.key
             fragmentList.add(fragment)

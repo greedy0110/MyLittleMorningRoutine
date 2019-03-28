@@ -13,6 +13,7 @@ import com.develop.greedy0110.mylittlemorningroutine.model.data.Routine
 import com.develop.greedy0110.mylittlemorningroutine.model.repository.RoutineMemoryModel
 import com.develop.greedy0110.mylittlemorningroutine.presenter.RoutineDisplayPresenter
 import com.develop.greedy0110.mylittlemorningroutine.view.adapter.RoutineRecordAdapter
+import com.develop.greedy0110.mylittlemorningroutine.view.contract.RoutineView
 import kotlinx.android.synthetic.main.fragment_routine_record.*
 
 class RoutineRecordFragment : Fragment(), RoutineView {

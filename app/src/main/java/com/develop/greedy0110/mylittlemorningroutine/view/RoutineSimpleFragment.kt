@@ -13,7 +13,9 @@ import com.develop.greedy0110.mylittlemorningroutine.model.data.Routine
 import com.develop.greedy0110.mylittlemorningroutine.model.repository.RoutineMemoryModel
 import com.develop.greedy0110.mylittlemorningroutine.presenter.RoutineSimplePresenter
 import com.develop.greedy0110.mylittlemorningroutine.utils.showDialog
+import com.develop.greedy0110.mylittlemorningroutine.view.contract.RoutineSimpleView
 import com.develop.greedy0110.mylittlemorningroutine.view.dialog.AddRoutineRecordDialog
+import com.develop.greedy0110.mylittlemorningroutine.view.dialog.YesOrNoDialog
 import khronos.toString
 import kotlinx.android.synthetic.main.fragment_routine_simple.*
 
@@ -22,7 +24,8 @@ import kotlinx.android.synthetic.main.fragment_routine_simple.*
  * 루틴의 간단한 정보를 보여줌
  * 루틴 세부정보로 링크되어서 세부 정보를 확인 할 수 있음
  */
-class RoutineSimpleFragment : Fragment(), RoutineSimpleView {
+class RoutineSimpleFragment : Fragment(),
+    RoutineSimpleView {
 
     var key: String = "demo"
     private lateinit var presenter: RoutineSimplePresenter
@@ -48,9 +51,18 @@ class RoutineSimpleFragment : Fragment(), RoutineSimpleView {
         }
 
         routine_simple_delete.setOnClickListener {
-            // TODO 루틴 삭제할지 물어본다. Dialog 정리후 제작하자.
-            // 삭제한다고 하면 삭제후 RoutineSimpleListActivity를 다시 그려야한다. (해당 루틴을 삭제하면 이 프래그먼트는 필요가 없어진다.)
-            presenter.removeRoutine()
+            showDialog(YesOrNoDialog().apply {
+                titleId = R.string.are_you_remove_routine
+                listener = object : YesOrNoDialog.ButtonListener {
+                    override fun clickYes() {
+                        // 삭제한다고 하면 삭제후 RoutineSimpleListActivity를 다시 그려야한다. (해당 루틴을 삭제하면 이 프래그먼트는 필요가 없어진다.)
+                        presenter.removeRoutine()
+                    }
+
+                    override fun clickNo() {
+                    }
+                }
+            })
         }
 
         routine_simple_record.setOnClickListener {

@@ -6,15 +6,16 @@ import com.google.android.material.tabs.TabLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentStatePagerAdapter
-import androidx.viewpager.widget.PagerAdapter
 import com.develop.greedy0110.mylittlemorningroutine.R
 import com.develop.greedy0110.mylittlemorningroutine.model.data.Routine
-import com.develop.greedy0110.mylittlemorningroutine.model.repository.RoutineRepository
+import com.develop.greedy0110.mylittlemorningroutine.model.repository.RoutineMemoryModel
+import com.develop.greedy0110.mylittlemorningroutine.presenter.RoutineDisplayPresenter
+import com.develop.greedy0110.mylittlemorningroutine.view.contract.RoutineView
 import kotlinx.android.synthetic.main.activity_routine.*
 
-class RoutineActivity : AppCompatActivity() {
+class RoutineActivity : AppCompatActivity(), RoutineView {
 
-
+    private lateinit var presenter: RoutineDisplayPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,15 +24,14 @@ class RoutineActivity : AppCompatActivity() {
         // demo routine 데이터
         //val key = "demo"
         val key = intent.getStringExtra("key")
-        val routine = RoutineRepository.routines.get(key)
+        presenter = RoutineDisplayPresenter(RoutineMemoryModel(), key)
+        presenter.bind(this)
+        presenter.onActivityCreated()
 
-        if (routine == null) {
-            // TODO 잘못된 key 라는 것을 알려야함
-            finish()
-            return
-        }
+    }
 
-        view_pager.adapter = RoutinePagerAdapter(supportFragmentManager, 2, key)
+    override fun updateLayout(routine: Routine) {
+        view_pager.adapter = RoutinePagerAdapter(supportFragmentManager, 2, routine.key)
         view_pager.addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(tab_layout))
         tab_layout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabReselected(p0: TabLayout.Tab?) {

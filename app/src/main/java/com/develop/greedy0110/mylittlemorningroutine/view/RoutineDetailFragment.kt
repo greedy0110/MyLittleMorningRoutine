@@ -11,9 +11,9 @@ import android.view.ViewGroup
 import com.develop.greedy0110.mylittlemorningroutine.R
 import com.develop.greedy0110.mylittlemorningroutine.model.data.Routine
 import com.develop.greedy0110.mylittlemorningroutine.model.repository.RoutineMemoryModel
-import com.develop.greedy0110.mylittlemorningroutine.model.repository.RoutineModel
 import com.develop.greedy0110.mylittlemorningroutine.presenter.RoutineDisplayPresenter
 import com.develop.greedy0110.mylittlemorningroutine.view.adapter.ToDoAdapter
+import com.develop.greedy0110.mylittlemorningroutine.view.contract.RoutineView
 import khronos.toString
 import kotlinx.android.synthetic.main.fragment_routine_detail.*
 

@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.develop.greedy0110.mylittlemorningroutine.R
 import com.develop.greedy0110.mylittlemorningroutine.model.data.Routine
-import com.develop.greedy0110.mylittlemorningroutine.model.repository.RoutineRepository
+import com.develop.greedy0110.mylittlemorningroutine.model.source.RoutineMemorySource
 import com.develop.greedy0110.mylittlemorningroutine.utils.showDialog
 import com.develop.greedy0110.mylittlemorningroutine.view.adapter.AddNewToDoAdapter
 import khronos.Dates
@@ -54,11 +54,7 @@ class AddRoutineDialog: DialogFragment() {
             setTitle(R.string.add_routine_title)
             setView(view)
             setPositiveButton(R.string.ok_text, null)
-            setNegativeButton(R.string.cancel_text) {
-                dialog, which ->
-
-                // TODO 나갈지 말지 dialog 띄워줌
-            }
+            setNegativeButton(R.string.cancel_text, null)
             create().apply {
                 // 조건에 맞지 않는경우 dismiss를 예방하기 위해서 코딩을 이런식으로 한다.
                 setOnShowListener {
@@ -71,10 +67,25 @@ class AddRoutineDialog: DialogFragment() {
                         val routine = makeRoutine()
 
                         // Routine 객체를 model 에 저장
-                        RoutineRepository.addRoutine(routine)
+                        RoutineMemorySource.addRoutine(routine)
 
                         // dialog 를 명시적으로 꺼줘야한다.
                         dismiss()
+                    }
+
+                    val neg = getButton(AlertDialog.BUTTON_NEGATIVE)
+                    neg.setOnClickListener {
+                        showDialog(YesOrNoDialog().apply {
+                            titleId = R.string.do_you_exit_routine_maker
+                            listener = object : YesOrNoDialog.ButtonListener {
+                                override fun clickYes() {
+                                    this@AddRoutineDialog.dismiss()
+                                }
+
+                                override fun clickNo() {
+                                }
+                            }
+                        })
                     }
                 }
             }

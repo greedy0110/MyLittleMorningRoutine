@@ -6,7 +6,7 @@ import android.os.Bundle
 import androidx.fragment.app.DialogFragment
 import com.develop.greedy0110.mylittlemorningroutine.R
 import com.develop.greedy0110.mylittlemorningroutine.model.data.Routine
-import com.develop.greedy0110.mylittlemorningroutine.model.repository.RoutineRepository
+import com.develop.greedy0110.mylittlemorningroutine.model.source.RoutineMemorySource
 import java.lang.IllegalStateException
 
 class AddRoutineRecordDialog : DialogFragment() {
@@ -33,7 +33,7 @@ class AddRoutineRecordDialog : DialogFragment() {
                 val record = routine.makeRecord()
                 record.toDoCheckList.fill(false)
                 for (i in selectedItems) record.toDoCheckList[i] = true
-                RoutineRepository.routines[routine.key]?.records?.add(record)
+                RoutineMemorySource.routines[routine.key]?.records?.add(record)
             }
             setNegativeButton(R.string.cancel_text) {
                 dialog, which ->
