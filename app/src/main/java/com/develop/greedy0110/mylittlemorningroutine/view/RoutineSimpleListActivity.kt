@@ -48,7 +48,7 @@ class RoutineSimpleListActivity : AppCompatActivity() {
         val fragmentList = mutableListOf<RoutineSimpleFragment>()
         for (routine in RoutineRepository.routines.values) {
             val fragment = RoutineSimpleFragment()
-            fragment.routine = routine
+            fragment.key = routine.key
             fragmentList.add(fragment)
         }
         return fragmentList
