@@ -2,9 +2,9 @@ package com.develop.greedy0110.mylittlemorningroutine.view
 
 import com.develop.greedy0110.mylittlemorningroutine.model.data.Routine
 
-interface RoutineSimpleView {
-    fun updateLayout(routine: Routine)
+interface RoutineSimpleView: RoutineView {
     fun goRoutineDetail(routine: Routine)
     fun reflashRoutineSimpleList()
     fun showAddRoutineRecordDialog(routine: Routine)
 }
+

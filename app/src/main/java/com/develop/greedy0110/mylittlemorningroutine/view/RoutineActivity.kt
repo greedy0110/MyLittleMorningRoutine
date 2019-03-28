@@ -31,7 +31,7 @@ class RoutineActivity : AppCompatActivity() {
             return
         }
 
-        view_pager.adapter = RoutinePagerAdapter(supportFragmentManager, 2, routine)
+        view_pager.adapter = RoutinePagerAdapter(supportFragmentManager, 2, key)
         view_pager.addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(tab_layout))
         tab_layout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabReselected(p0: TabLayout.Tab?) {
@@ -48,12 +48,12 @@ class RoutineActivity : AppCompatActivity() {
     }
 }
 
-class RoutinePagerAdapter(fm: FragmentManager, private val tabCount: Int, routine: Routine) : FragmentStatePagerAdapter(fm) {
+class RoutinePagerAdapter(fm: FragmentManager, private val tabCount: Int, key: String) : FragmentStatePagerAdapter(fm) {
     private val routineDF = RoutineDetailFragment()
     private val routineRF = RoutineRecordFragment()
 
     init {
-        routineDF.routine = routine; routineRF.routine = routine
+        routineDF.key = key; routineRF.key = key
     }
 
     override fun getItem(pos: Int): Fragment {
