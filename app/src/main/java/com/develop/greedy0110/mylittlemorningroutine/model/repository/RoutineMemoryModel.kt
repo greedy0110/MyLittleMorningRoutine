@@ -15,4 +15,8 @@ class RoutineMemoryModel : RoutineModel {
     override fun removeRoutine(key: String) {
         RoutineMemorySource.deleteRoutine(key)
     }
+
+    override fun addRoutine(d: Routine) {
+        RoutineMemorySource.addRoutine(d)
+    }
 }

@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import com.develop.greedy0110.mylittlemorningroutine.R
 import com.develop.greedy0110.mylittlemorningroutine.model.data.Routine
 import com.develop.greedy0110.mylittlemorningroutine.model.repository.RoutineMemoryModel
+import com.develop.greedy0110.mylittlemorningroutine.model.repository.RoutineRoomModel
 import com.develop.greedy0110.mylittlemorningroutine.presenter.RoutineSimplePresenter
 import com.develop.greedy0110.mylittlemorningroutine.utils.showDialog
 import com.develop.greedy0110.mylittlemorningroutine.view.contract.RoutineSimpleView
@@ -41,7 +42,7 @@ class RoutineSimpleFragment : Fragment(),
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        presenter = RoutineSimplePresenter(RoutineMemoryModel(), key)
+        presenter = RoutineSimplePresenter(RoutineRoomModel(activity!!.applicationContext), key)
         presenter.bind(this)
         presenter.onActivityCreated()
 

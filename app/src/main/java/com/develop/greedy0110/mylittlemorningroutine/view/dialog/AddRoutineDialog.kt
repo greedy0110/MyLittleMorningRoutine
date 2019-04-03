@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.develop.greedy0110.mylittlemorningroutine.R
 import com.develop.greedy0110.mylittlemorningroutine.model.data.Routine
+import com.develop.greedy0110.mylittlemorningroutine.model.repository.RoutineRoomModel
 import com.develop.greedy0110.mylittlemorningroutine.model.source.RoutineMemorySource
 import com.develop.greedy0110.mylittlemorningroutine.utils.showDialog
 import com.develop.greedy0110.mylittlemorningroutine.view.adapter.AddNewToDoAdapter
@@ -67,7 +68,7 @@ class AddRoutineDialog: DialogFragment() {
                         val routine = makeRoutine()
 
                         // Routine 객체를 model 에 저장
-                        RoutineMemorySource.addRoutine(routine)
+                        RoutineRoomModel(activity!!.applicationContext).addRoutine(routine)
 
                         // dialog 를 명시적으로 꺼줘야한다.
                         dismiss()

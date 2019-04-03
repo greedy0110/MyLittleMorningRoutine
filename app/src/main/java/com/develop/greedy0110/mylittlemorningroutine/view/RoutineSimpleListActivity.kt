@@ -8,6 +8,7 @@ import androidx.fragment.app.FragmentStatePagerAdapter
 import com.develop.greedy0110.mylittlemorningroutine.R
 import com.develop.greedy0110.mylittlemorningroutine.model.data.Routine
 import com.develop.greedy0110.mylittlemorningroutine.model.repository.RoutineMemoryModel
+import com.develop.greedy0110.mylittlemorningroutine.model.repository.RoutineRoomModel
 import com.develop.greedy0110.mylittlemorningroutine.presenter.RoutineListPresenter
 import com.develop.greedy0110.mylittlemorningroutine.view.contract.RoutineListView
 import kotlinx.android.synthetic.main.activity_routine_simple_list.*
@@ -23,7 +24,7 @@ class RoutineSimpleListActivity : AppCompatActivity(),
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_routine_simple_list)
 
-        presenter = RoutineListPresenter(RoutineMemoryModel())
+        presenter = RoutineListPresenter(RoutineRoomModel(applicationContext))
         presenter.bind(this)
     }
 

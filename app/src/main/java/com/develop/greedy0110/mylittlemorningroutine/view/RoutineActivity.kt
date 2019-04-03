@@ -9,6 +9,7 @@ import androidx.fragment.app.FragmentStatePagerAdapter
 import com.develop.greedy0110.mylittlemorningroutine.R
 import com.develop.greedy0110.mylittlemorningroutine.model.data.Routine
 import com.develop.greedy0110.mylittlemorningroutine.model.repository.RoutineMemoryModel
+import com.develop.greedy0110.mylittlemorningroutine.model.repository.RoutineRoomModel
 import com.develop.greedy0110.mylittlemorningroutine.presenter.RoutineDisplayPresenter
 import com.develop.greedy0110.mylittlemorningroutine.view.contract.RoutineView
 import kotlinx.android.synthetic.main.activity_routine.*
@@ -24,7 +25,7 @@ class RoutineActivity : AppCompatActivity(), RoutineView {
         // demo routine 데이터
         //val key = "demo"
         val key = intent.getStringExtra("key")
-        presenter = RoutineDisplayPresenter(RoutineMemoryModel(), key)
+        presenter = RoutineDisplayPresenter(RoutineRoomModel(applicationContext), key)
         presenter.bind(this)
         presenter.onActivityCreated()
 
