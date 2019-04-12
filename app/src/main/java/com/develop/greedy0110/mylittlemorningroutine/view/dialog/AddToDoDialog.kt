@@ -2,12 +2,14 @@ package com.develop.greedy0110.mylittlemorningroutine.view.dialog
 
 import android.app.AlertDialog
 import android.app.Dialog
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.DialogFragment
 import com.develop.greedy0110.mylittlemorningroutine.R
 import com.develop.greedy0110.mylittlemorningroutine.model.data.ToDo
 import com.develop.greedy0110.mylittlemorningroutine.view.adapter.AddNewToDoAdapter
 import com.google.android.material.textfield.TextInputEditText
+import org.jetbrains.anko.startActivity
 import java.lang.IllegalStateException
 
 class AddToDoDialog: DialogFragment() {
@@ -35,5 +37,14 @@ class AddToDoDialog: DialogFragment() {
             }
             create()
         } ?: throw IllegalStateException()
+    }
+
+    // 종료되면 액티비티를 다시 그려준다.
+    override fun onDestroy() {
+        super.onDestroy()
+        activity?.run {
+            intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT)
+            startActivity(intent)
+        }
     }
 }

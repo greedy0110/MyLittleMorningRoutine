@@ -1,11 +1,30 @@
-<resources>
+<resources xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorAccent">@color/colorAccent</item>ßß
+
+        <item name="buttonStyle">@style/ButtonStyle</item>
+        <!--<item name="android:background">@color/secondaryBasilOrange50</item>-->
+    </style>
+
+    <style name="ButtonStyle">
+        <item name="android:background">@drawable/button_primary_basil_orange</item>
+        <item name="android:textColor">@color/primaryBasilGreen800</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textAlignment">gravity</item>
+    </style>
+
+    <style name="DefaultTextStyle">
+        <item name="android:textColor">@color/primaryBasilGreen800</item>
+        <item name="android:textColorHint">@color/primaryBasilGreen100</item>
+    </style>
+
+    <style name="LargeTextStyle">
+        <item name="android:textColor">@color/secondaryBasilOrange800</item>
     </style>
 
 </resources>

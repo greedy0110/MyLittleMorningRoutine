@@ -90,7 +90,7 @@ class RoutineSimpleFragment : Fragment(),
         startActivity(intent)
     }
 
-    override fun reflashRoutineSimpleList() {
+    override fun refreshRoutineSimpleList() {
         val intent = Intent(activity, RoutineSimpleListActivity::class.java)
         intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT) // 이 플래그를 줘야 새로운 activity를 만드는 것이 아니라 이미 메모리에 적재된 activity를 그대로 가져온다.
         startActivity(intent)

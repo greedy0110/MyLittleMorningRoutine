@@ -11,7 +11,7 @@ class RoutineRoomSource private constructor(context: Context){
 
     private val db: RoutineRoomDatabase by lazy {  Room.databaseBuilder(
         context,
-        RoutineRoomDatabase::class.java, "routine").allowMainThreadQueries().build()
+        RoutineRoomDatabase::class.java, "routine").allowMainThreadQueries().fallbackToDestructiveMigration().build()
     }
 
     init {

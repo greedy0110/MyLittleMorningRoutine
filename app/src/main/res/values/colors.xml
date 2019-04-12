@@ -3,4 +3,11 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
+
+    <color name="primaryBasilGreen800">#356859</color>
+    <color name="primaryBasilGreen500">#37966f</color>
+    <color name="primaryBasilGreen100">#b9e4c9</color>
+    
+    <color name="secondaryBasilOrange800">#FD5523</color>
+    <color name="secondaryBasilOrange50">#FFFBE6</color>
 </resources>

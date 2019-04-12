@@ -8,6 +8,7 @@
         tools:context=".view.RoutineSimpleListActivity">
 
     <androidx.viewpager.widget.ViewPager
+            android:background="@color/secondaryBasilOrange50"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/simple_list_view_pager"/>

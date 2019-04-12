@@ -43,7 +43,7 @@ data class Routine(
 
 @Entity(tableName = "routinedb")
 data class RoutineDB(
-    @PrimaryKey var did: Int,
+    @PrimaryKey(autoGenerate = true) var did: Int,
     @ColumnInfo(name = "title") var title: String,
     @ColumnInfo(name = "desc") var desc: String,
     @ColumnInfo(name = "isWeekday") var isWeekday: Boolean,
@@ -65,7 +65,7 @@ interface RoutineDBDao {
     fun delete(type: RoutineDB)
 }
 
-@Database(entities = [RoutineDB::class], version = 1)
+@Database(entities = [RoutineDB::class], version = 2)
 @TypeConverters(RoutineConverter::class)
 abstract class RoutineRoomDatabase: RoomDatabase() {
     abstract fun routineDao(): RoutineDBDao

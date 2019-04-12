@@ -14,7 +14,7 @@ class RoutineSimplePresenter(private val model: RoutineModel, private val key: S
 
     fun removeRoutine() {
         model.removeRoutine(key)
-        view?.reflashRoutineSimpleList()
+        view?.refreshRoutineSimpleList()
     }
 
     fun addRoutineRecord() {

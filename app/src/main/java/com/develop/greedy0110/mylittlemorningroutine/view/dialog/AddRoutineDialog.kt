@@ -2,6 +2,7 @@ package com.develop.greedy0110.mylittlemorningroutine.view.dialog
 
 import android.app.AlertDialog
 import android.app.Dialog
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.RadioButton
@@ -116,4 +117,13 @@ class AddRoutineDialog: DialogFragment() {
         startDate = Dates.today,
         toDoList = adapter.data
     )
+
+    // 종료되면 액티비티를 다시 그려준다.
+    override fun onDestroy() {
+        super.onDestroy()
+        activity?.run {
+            intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT)
+            startActivity(intent)
+        }
+    }
 }
