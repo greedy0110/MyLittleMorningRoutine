@@ -16,11 +16,12 @@ import com.develop.greedy0110.mylittlemorningroutine.presenter.RoutineDisplayPre
 import com.develop.greedy0110.mylittlemorningroutine.view.adapter.RoutineRecordAdapter
 import com.develop.greedy0110.mylittlemorningroutine.view.contract.RoutineView
 import kotlinx.android.synthetic.main.fragment_routine_record.*
+import org.koin.android.ext.android.inject
 
 class RoutineRecordFragment : Fragment(), RoutineView {
 
     var key: String = "demo"
-    private lateinit var presenter: RoutineDisplayPresenter
+    private val presenter: RoutineDisplayPresenter by inject()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,7 +34,7 @@ class RoutineRecordFragment : Fragment(), RoutineView {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        presenter = RoutineDisplayPresenter(RoutineRoomModel(activity!!.applicationContext), key)
+        presenter.key = key
         presenter.bind(this)
         presenter.onActivityCreated()
     }

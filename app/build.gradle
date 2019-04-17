@@ -65,4 +65,18 @@ dependencies {
 
     // JSON Library Gson (https://github.com/google/gson)
     implementation 'com.google.code.gson:gson:2.8.5'
+
+    // add koin library (https://github.com/InsertKoinIO/koin)
+    ext.koin_version = '2.0.0-rc-2'
+
+    // Koin for Kotlin
+    implementation "org.koin:koin-core:$koin_version"
+    // Koin extended & experimental features
+    implementation "org.koin:koin-core-ext:$koin_version"
+    // Koin for Android
+    implementation "org.koin:koin-android:$koin_version"
+    // Koin Android Scope feature
+    implementation "org.koin:koin-android-scope:$koin_version"
+    // Koin Android ViewModel feature
+    implementation "org.koin:koin-android-viewmodel:$koin_version"
 }

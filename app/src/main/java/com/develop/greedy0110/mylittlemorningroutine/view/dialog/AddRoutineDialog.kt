@@ -12,12 +12,14 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.develop.greedy0110.mylittlemorningroutine.R
 import com.develop.greedy0110.mylittlemorningroutine.model.data.Routine
+import com.develop.greedy0110.mylittlemorningroutine.model.repository.RoutineModel
 import com.develop.greedy0110.mylittlemorningroutine.model.repository.RoutineRoomModel
 import com.develop.greedy0110.mylittlemorningroutine.model.source.RoutineMemorySource
 import com.develop.greedy0110.mylittlemorningroutine.utils.showDialog
 import com.develop.greedy0110.mylittlemorningroutine.view.adapter.AddNewToDoAdapter
 import khronos.Dates
 import org.jetbrains.anko.toast
+import org.koin.android.ext.android.inject
 
 class AddRoutineDialog: DialogFragment() {
     lateinit var routine_title: TextView
@@ -27,6 +29,7 @@ class AddRoutineDialog: DialogFragment() {
     lateinit var todo_add: Button
 
     val adapter = AddNewToDoAdapter()
+    val routineModel: RoutineModel by inject()
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val view = activity!!.layoutInflater.inflate(R.layout.add_routine_dialog, null)
@@ -69,7 +72,7 @@ class AddRoutineDialog: DialogFragment() {
                         val routine = makeRoutine()
 
                         // Routine 객체를 model 에 저장
-                        RoutineRoomModel(activity!!.applicationContext).addRoutine(routine)
+                        routineModel.addRoutine(routine)
 
                         // dialog 를 명시적으로 꺼줘야한다.
                         dismiss()

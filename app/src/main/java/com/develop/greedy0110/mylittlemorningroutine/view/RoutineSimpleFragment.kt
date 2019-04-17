@@ -19,6 +19,7 @@ import com.develop.greedy0110.mylittlemorningroutine.view.dialog.AddRoutineRecor
 import com.develop.greedy0110.mylittlemorningroutine.view.dialog.YesOrNoDialog
 import khronos.toString
 import kotlinx.android.synthetic.main.fragment_routine_simple.*
+import org.koin.android.ext.android.inject
 
 /**
  * A simple [Fragment] subclass.
@@ -29,7 +30,7 @@ class RoutineSimpleFragment : Fragment(),
     RoutineSimpleView {
 
     var key: String = "demo"
-    private lateinit var presenter: RoutineSimplePresenter
+    private val presenter: RoutineSimplePresenter by inject()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -42,7 +43,7 @@ class RoutineSimpleFragment : Fragment(),
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        presenter = RoutineSimplePresenter(RoutineRoomModel(activity!!.applicationContext), key)
+        presenter.key = key
         presenter.bind(this)
         presenter.onActivityCreated()
 

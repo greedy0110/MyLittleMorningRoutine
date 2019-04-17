@@ -13,10 +13,12 @@ import com.develop.greedy0110.mylittlemorningroutine.model.repository.RoutineRoo
 import com.develop.greedy0110.mylittlemorningroutine.presenter.RoutineDisplayPresenter
 import com.develop.greedy0110.mylittlemorningroutine.view.contract.RoutineView
 import kotlinx.android.synthetic.main.activity_routine.*
+import org.koin.android.ext.android.inject
+import org.koin.core.parameter.parametersOf
 
 class RoutineActivity : AppCompatActivity(), RoutineView {
 
-    private lateinit var presenter: RoutineDisplayPresenter
+    private val presenter: RoutineDisplayPresenter by inject()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,7 +27,7 @@ class RoutineActivity : AppCompatActivity(), RoutineView {
         // demo routine 데이터
         //val key = "demo"
         val key = intent.getStringExtra("key")
-        presenter = RoutineDisplayPresenter(RoutineRoomModel(applicationContext), key)
+        presenter.key = key
         presenter.bind(this)
         presenter.onActivityCreated()
 

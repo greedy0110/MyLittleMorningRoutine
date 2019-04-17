@@ -12,19 +12,19 @@ import com.develop.greedy0110.mylittlemorningroutine.model.repository.RoutineRoo
 import com.develop.greedy0110.mylittlemorningroutine.presenter.RoutineListPresenter
 import com.develop.greedy0110.mylittlemorningroutine.view.contract.RoutineListView
 import kotlinx.android.synthetic.main.activity_routine_simple_list.*
+import org.koin.android.ext.android.inject
 
 class RoutineSimpleListActivity : AppCompatActivity(),
     RoutineListView {
 
     private var lastPos = -1
     private lateinit var adapter: RoutineSimplePagerAdapter
-    private lateinit var presenter: RoutineListPresenter
+    private val presenter: RoutineListPresenter by inject()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_routine_simple_list)
 
-        presenter = RoutineListPresenter(RoutineRoomModel(applicationContext))
         presenter.bind(this)
     }
 
